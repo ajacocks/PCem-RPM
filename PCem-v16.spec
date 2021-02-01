@@ -6,8 +6,8 @@ Summary:        PCem (short for PC Emulator) is an IBM PC emulator for Windows a
 License:        GPLv2
 URL:            http://pcem-emulator.co.uk
 Source0:        http://pcem-emulator.co.uk/files/PCemV%{version}Linux.tar.gz
-Source1:        PCemV16.man
-Patch0:         PCemV16Linux-configure.patch
+Source1:        https://github.com/ajacocks/PCem-RPM/raw/master/PCemV16.man
+Patch0:         https://github.com/ajacocks/PCem-RPM/raw/master/PCemV16Linux-configure.patch
 
 BuildRequires:  automake
 BuildRequires:  gcc-c++
@@ -29,7 +29,9 @@ PCem (short for PC Emulator) is an IBM PC emulator for Windows and Linux that sp
 
 %build
 ./configure
-make
+aclocal
+automake
+make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
